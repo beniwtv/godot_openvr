@@ -16,8 +16,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        plaform: [linux, windows, osx]
-        os: [ubuntu-18.04, windows-latest, macOS-latest]
+        include: 
+          - os: ubuntu-18.04
+            platform: linux
+          - os: windows-latest
+            platform: windows
+          - os: macOS-latest
+            platform: osx
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
