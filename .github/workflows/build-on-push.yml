@@ -15,8 +15,9 @@ jobs:
     name: Building for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        include: 
+        include:
           - os: ubuntu-18.04
             platform: linux
           - os: windows-latest
@@ -33,6 +34,17 @@ jobs:
       run: |
         git submodule init
         git submodule update
+
+    - name: Install scons (Ubuntu)
+      run: |
+        apt install scons
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Install scons (macOS)
+      run: |
+        brew install scons
+      if: matrix.os == 'macos-latest'
+
     - name: Run the build for godot-cpp
       run: |
         cd $GITHUB_WORKSPACE/godot-cpp
