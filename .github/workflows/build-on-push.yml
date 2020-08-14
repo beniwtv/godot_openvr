@@ -32,7 +32,6 @@ jobs:
 
     - name: Initialize GIT subrepositories
       run: |
-        git submodule init
         git submodule update --recursive
 
     - name: Install scons (Ubuntu)
