@@ -114,7 +114,7 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
       - name: Check
-        run: ls -la
+        run: ls -la addons/godot-openvr/bin/osx/
       - name: Copy files to destination
         run: |
           rm -rf addons/godot-openvr
@@ -123,7 +123,7 @@ jobs:
           cp build-files-linux/demo/addons/godot-openvr/bin/x11/libgodot_openvr.so addons/godot-openvr/bin/x11/libgodot_openvr.so
           cp build-files-linux/openvr/bin/linux64/libopenvr_api.so addons/godot-openvr/bin/x11/libopenvr_api.so
           cp build-files-macos/demo/addons/godot-openvr/bin/osx/libgodot_openvr.dylib addons/godot-openvr/bin/osx/libgodot_openvr.dylib
-          cp -r build-files-macos/openvr/bin/osx64/OpenVR.framework addons/godot-openvr/bin/osx/
+          cp -r build-files-macos/openvr/bin/osx64/OpenVR.framework addons/godot-openvr/bin/osx/OpenVR.framework
           cp build-files-windows/demo/addons/godot-openvr/bin/win64/libgodot_openvr.dll addons/godot-openvr/bin/win64/libgodot_openvr.dll
           cp build-files-windows/openvr/bin/win64/openvr_api.dll addons/godot-openvr/bin/win64/openvr_api.dll
       - name: Clean up extracted files
