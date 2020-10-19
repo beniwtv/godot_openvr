@@ -141,10 +141,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Automatic build for changeset ${{ github.ref }}
+          tag_name: ${{ github.sha }}
+          release_name: Automatic build for changeset ${{ github.sha }}
           body: |
-            This is an automated build for changeset ${{ github.ref }}
+            This is an automated build for changeset ${{ github.sha }}
           draft: false
           prerelease: true
       - name: Upload asset
