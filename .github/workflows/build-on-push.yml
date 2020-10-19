@@ -110,10 +110,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: 'GodotVR/godot_openvr'
-      - name: Check
-        run: ls -la
+          path: godot_openvr
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
+      - name: Check
+        run: ls -la
       - name: Copy files to destination
         run: |
           cp build-files-linux/demo/addons/godot-openvr/bin/x11/libgodot_openvr.so addons/godot-openvr/bin/x11/libgodot_openvr.so
