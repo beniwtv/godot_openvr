@@ -144,10 +144,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $GITHUB_SHA_SHORT
-          release_name: Automatic build for changeset $GITHUB_SHA_SHORT
+          tag_name: ${{ env.GITHUB_SHA_SHORT }}
+          release_name: Automatic build for changeset ${{ env.GITHUB_SHA_SHORT }}
           body: |
-            This is an automated build for changeset $GITHUB_SHA_SHORT
+            This is an automated build for changeset ${{ env.GITHUB_SHA_SHORT }}
           draft: false
           prerelease: true
       - name: Upload asset
