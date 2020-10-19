@@ -117,7 +117,7 @@ jobs:
         run: ls -la
       - name: Copy files to destination
         run: |
-          rm -rf addons/godot_openvr
+          rm -rf addons/godot-openvr
           rm -rf addons/godot-openvr/bin/osx/OpenVR.framework
           cp -r godot_openvr/demo/addons/godot-openvr addons/godot-openvr
           cp build-files-linux/demo/addons/godot-openvr/bin/x11/libgodot_openvr.so addons/godot-openvr/bin/x11/libgodot_openvr.so
