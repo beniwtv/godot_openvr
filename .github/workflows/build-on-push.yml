@@ -135,16 +135,19 @@ jobs:
       - name: Zip asset
         run: |
           zip -qq -r godot-openvr.zip .
+      - name: Calculate GIT short ref
+        run: |
+          echo "GITHUB_SHA_SHORT=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_ENV
       - name: Create release for asset
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
-          release_name: Automatic build for changeset ${{ github.sha }}
+          tag_name: $GITHUB_SHA_SHORT
+          release_name: Automatic build for changeset $GITHUB_SHA_SHORT
           body: |
-            This is an automated build for changeset ${{ github.sha }}
+            This is an automated build for changeset $GITHUB_SHA_SHORT
           draft: false
           prerelease: true
       - name: Upload asset
