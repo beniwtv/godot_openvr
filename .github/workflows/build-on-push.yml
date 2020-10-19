@@ -77,7 +77,7 @@ jobs:
         name: build-files-linux
         path: |
           demo/addons/godot-openvr/bin/x11/libgodot_openvr.so
-          openvr/lib/linux64/libopenvr_api.so
+          openvr/bin/linux64/libopenvr_api.so
       if: matrix.os == 'ubuntu-18.04'
 
     - name: Upload build files (artifacts) (macOS)    
@@ -86,7 +86,7 @@ jobs:
         name: build-files-macos
         path: |
           demo/addons/godot-openvr/bin/osx/libgodot_openvr.dylib
-          openvr/lib/osx64/OpenVR.framework
+          openvr/bin/osx64/OpenVR.framework
       if: matrix.os == 'macos-latest'
 
     - name: Upload build files (artifacts) (Windows)    
@@ -95,7 +95,7 @@ jobs:
         name: build-files-windows
         path: |
           demo/addons/godot-openvr/bin/win64/libgodot_openvr.dll
-          openvr/lib/win64/openvr_api.dll
+          openvr/bin/win64/openvr_api.dll
       if: matrix.os == 'windows-latest'
   # This job collects the build output and assembles the final asset (artifact)
   #asset:
