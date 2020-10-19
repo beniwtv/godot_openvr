@@ -98,8 +98,16 @@ jobs:
           openvr/bin/win64/openvr_api.dll
       if: matrix.os == 'windows-latest'
   # This job collects the build output and assembles the final asset (artifact)
-  #asset:
-  #  name: Assembling the asset (artifact)
-  #  needs: build
+  asset:
+    name: Assembling the asset (artifact)
+    runs-on: ubuntu-18.04
+    needs: build
     # Steps represent a sequence of tasks that will be executed as part of the job
-  #  steps:
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: 'GodotVR/godot-openvr-asset'
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v2
+      - name: Check
+        run: ls -la
