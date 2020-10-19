@@ -10,12 +10,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This job builds the plugin for our target platforms
   build:
     name: Building for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         include:
           - os: ubuntu-18.04
@@ -70,3 +70,36 @@ jobs:
         cd ${env:GITHUB_WORKSPACE}
         scons platform=${{ matrix.platform }} -j2 target=release bits=64
       if: matrix.os == 'windows-latest'
+
+    - name: Upload build files (artifacts) (Linux)    
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-files-linux
+        path: |
+          demo\addons\godot-openvr\bin\x11\libgodot_openvr.so
+          openvr\lib\linux64\libopenvr_api.so
+      if: matrix.os == 'ubuntu-18.04'
+
+    - name: Upload build files (artifacts) (macOS)    
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-files-macos
+        path: |
+          demo\addons\godot-openvr\bin\osx\libgodot_openvr.dylib
+          openvr\lib\osx64\OpenVR.framework
+      if: matrix.os == 'macos-latest'
+
+    - name: Upload build files (artifacts) (Windows)    
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-files-windows
+        path: |
+          demo\addons\godot-openvr\bin\win64\libgodot_openvr.dll
+          openvr\lib\win64\openvr_api.dll
+      if: matrix.os == 'windows-latest'
+  # This job collects the build output and assembles the final asset (artifact)
+  #asset:
+  #  name: Assembling the asset (artifact)
+  #  needs: build
+    # Steps represent a sequence of tasks that will be executed as part of the job
+  #  steps:
