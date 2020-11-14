@@ -3,10 +3,9 @@
 name: Build on push
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events, but only for the master branch we'll create .zip files
 on:
-  push:
-    branches: [ master ]
+  [push, pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -102,6 +101,8 @@ jobs:
     name: Assembling the asset (artifact)
     runs-on: ubuntu-18.04
     needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
