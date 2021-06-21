@@ -152,7 +152,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: "godot-openvr.zip"
-          body: "New release!"
+          body: "A new release!"
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
         if: startsWith(github.ref, 'refs/tags')
