@@ -107,10 +107,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: 'GodotVR/godot-openvr'
-          path: godot_openvr
-      - uses: actions/checkout@v2
-        with:
           repository: 'GodotVR/godot_openvr'
           path: godot_openvr
       - name: Download all workflow run artifacts
